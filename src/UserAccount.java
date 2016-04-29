@@ -5,17 +5,33 @@ public class UserAccount{
         private String email;
         private String password;
 
+        /**
+         * Creates a new account
+         * @param first
+         * @param last
+         * @param email
+         * @param password
+         */
      public UserAccount(String first, String last, String email, String password) {
          this.first = first;
          this.last = last;
          this.email = email;
          this.password = password;
      }
-     public void editAccount(){
+     
+     /**
+      * Edits account
+      * @param user the user
+      */
+     public void editAccount(UserAccount user){
 
      }
 
-     public void deleteAccount(){
+     /**
+      * Deletes account
+      * @param user the user
+      */
+     public void deleteAccount(UserAccount user){
 
      }
     }
