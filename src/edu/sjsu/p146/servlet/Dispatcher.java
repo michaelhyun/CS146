@@ -48,11 +48,19 @@ public class Dispatcher extends HttpServlet {
 				path = "WEB-INF/jsps/sample.jsp";	
 				
 			}else{
-				msg = "Login Failed";
+				msg = "LOGIN FAILED";
 				path = "WEB-INF/jsps/login.jsp";	
 				
 			}
 			request.setAttribute("message", msg);
+		}else if(url.equals("/registerPage.do")){
+			path = "WEB-INF/jsps/register.jsp";
+		}else if(url.equals("/register.do")){
+			path = "WEB-INF/jsps/sample.jsp";
+		}else if(url.equals("/searchresults.do")){
+			path = "WEB-INF/jsps/search.jsp";
+		}else if(url.equals("/donate.do")){
+			path = "WEB-INF/jsps/donate.jsp";
 		}
 		
 		System.out.println("Path"+ path);

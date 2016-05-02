@@ -11,7 +11,7 @@ public class LoginService {
 	public boolean loginUser(String username, String password){
 		
 		boolean status = false;
-		if(username.equals("anuteja") && password.equals("isIntelligent")){
+		if(username.equals("anjani") && password.equals("anjani")){
 			status = true;
 		}
 		return status;		
