@@ -22,8 +22,12 @@
 				<form action="./register.do" method="get">
 					<div class="form-wrap">
 						<div class="form-group">
-							<input class="form-control input-lg" type="text" name="email"
-								placeholder="Email">
+							<input class="form-control input-lg" type="text" name="firstName"
+								placeholder="First Name">
+						</div>
+						<div class="form-group">
+							<input class="form-control input-lg" type="text" name="lastName"
+								placeholder="Last Name">
 						</div>
 						<div class="form-group">
 							<input class="form-control input-lg" type="text" name="username"
@@ -36,18 +40,18 @@
 						<button class="btn btn-default btn-lg submit-button" type="submit">REGISTER</button>
 					</div>
 				</form>
+				<div class="failed">
+					<%=message == null ? "" : message %>
+				</div>
 			</div>
-			<!-- INNER WRAP - END -->
 		</div>
-		<!-- OUTER WRAP - END -->
 	</div>
-	<!-- CONTAINER - END -->
 </body>
 </html>
 
-
 <style>
 html, body {
+	background: rgba(0, 0, 0, 0.8);
 	height: 100vh;
 	width: 100vw;
 	color: #fff;
@@ -95,3 +99,6 @@ html, body {
 </style>
 
 </html>
+
+
+

@@ -39,18 +39,15 @@
 				<%=message == null ? "" : message %>
 			</div>
 			</div>
-			<!-- INNER WRAP - END -->
 		</div>
-		<!-- OUTER WRAP - END -->
 	</div>
-	<!-- CONTAINER - END -->
 </body>
 </html>
 
 
-
 <style>
 html, body {
+	background: rgba(0, 0, 0, 0.8);
 	height: 100vh;
 	width: 100vw;
 	color: #fff;
