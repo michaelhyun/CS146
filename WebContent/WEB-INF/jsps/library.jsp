@@ -13,7 +13,7 @@
 	edu.sjsu.p146.service.Book[] books = (edu.sjsu.p146.service.Book[]) request.getAttribute("books");
 	
 	for(edu.sjsu.p146.service.Book book : books) {
-		out.println(book.getTitle() + " " + book.getAuthor() + " " + book.getIsbn());
+		out.println(book.getAuthor());
 	}
 %>
 

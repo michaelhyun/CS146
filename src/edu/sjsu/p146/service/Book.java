@@ -10,7 +10,7 @@ public class Book {
 	private String isbn;
 
 	public Book(String title, String author, String isbn) {
-		//super();
+		super();
 		this.title = title;
 		this.author = author;
 		this.isbn = isbn;
@@ -24,7 +24,7 @@ public class Book {
 		return author;
 	}
 
-	public String getIsbn() {
+	public String getISBN() {
 		return isbn;
 	}
 }

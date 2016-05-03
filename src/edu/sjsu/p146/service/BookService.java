@@ -2,6 +2,7 @@ package edu.sjsu.p146.service;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,12 +16,14 @@ public class BookService {
 	
 	//methods in this class: setFilePath, search, sortBooks, registerBook, addBook, readBooksFromFile
 	
-	private List<Book> books;
+	private static List<Book> books;
 	private String filePath;
+	private static List<Book> test;
 	
 	public BookService() {
 		this.filePath = this.getClass().getResource("").getPath() + "books.txt"; //leads to books.txt
 		this.books = this.readBooksFromFile(); //method below
+		this.test = null;
 	}
 	
 	public void setFilePath(String filePath) {
@@ -31,17 +34,20 @@ public class BookService {
 		
 		//fix this
 		List<Book> list = new ArrayList<Book>();
-		if(!title.isEmpty()) {
+		if(!isbn.isEmpty()) { //searches through ISBN
+			searchISBN(isbn);
+		} else if(!title.isEmpty()) {
 			if(!author.isEmpty()) {
-				
+				searchTwo(title, author);
+			} else {
+				searchTitle(title);
 			}
-			
 		} else if(!author.isEmpty()) {
-			
+			searchAuthor(author);
 		} else {
-			
+			System.out.println("Please enter a title, author, or ISBN");
 		}
-		
+
 		//after you get a subset of book that match your search criteria
 		//sort here
 		List<Book> sorted = sortBooks(list);
@@ -50,9 +56,52 @@ public class BookService {
 		return this.books;
 	}
 	
-
+	private static List<Book> searchTitle(String title) { 
+		List<Book> filtered = new ArrayList<Book>();
+		for(Book book : books) {
+			if(books.contains(title)) {
+				filtered.add(book);
+			}
+		}
+		return sortTitle(filtered);
+	}
+	
+	private static List<Book> searchAuthor(String author) { 
+		List<Book> filtered = new ArrayList<Book>();
+		for(Book book : books) {
+			if(books.contains(author)) {
+				filtered.add(book);
+			}
+		}
+		return sortAuthor(filtered);
+	}
+	
+	private static List<Book> searchISBN(String isbn) {
+		List<Book> results = new ArrayList<Book>();
+		for(Book book : books) {
+			if(books.contains(isbn)) {
+				results.add(book);
+			}
+		}
+		return results;
+	}
+	
+	private static List<Book> searchTwo(String title, String author) {
+		return books;
+	}
+	
+	private static List<Book> sortTitle(List<Book> list) {
+		//IMPLEMENT SORT METHOD
+		return list;
+	}
+	
+	private static List<Book> sortAuthor(List<Book> list) {
+		//IMPLEMENT MERGESORT METHOD?
+		return list;
+	}
+	
 	private List<Book> sortBooks(List<Book> list) {
-		// TODO Sort here
+		//SORT
 		return list;
 	}
 	
@@ -69,7 +118,7 @@ public class BookService {
 		//checks if book already exists
 		boolean exists = false;
 		for(Book book : this.books) { //goes through List books
-			if(book.getIsbn().equals(isbn)) { //checks by ISBN (easiest way of checking)
+			if(book.getISBN().equals(isbn)) { //checks by ISBN (easiest way of checking)
 				exists = true;
 				break;
 			}
