@@ -8,7 +8,7 @@ public class RefinedBookDB{
 		this.list = list;
 			for(int i = 0; i < list.size(); i++){
 				db[i].setRef(i);
-				int x = list.getTitle().indexOf(word);
+				int x = list.get(i).getTitle().indexOf(word);
 				db[i].setIndex(x);
 			}
 	}
