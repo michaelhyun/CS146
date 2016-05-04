@@ -47,6 +47,8 @@ public class RefinedBookDB{
     	for(RefinedBook book: db){
     		newList.add(list.get(book.getRef()));
     	}
+    	
+    	return newList;
     }
 	}
 
