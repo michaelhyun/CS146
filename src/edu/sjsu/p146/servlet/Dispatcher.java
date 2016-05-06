@@ -18,7 +18,9 @@ import edu.sjsu.p146.service.UserService;
 /**
  * Servlet implementation class Dispatcher
  */
+
 @WebServlet("/Dispatcher")
+
 public class Dispatcher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -42,13 +44,13 @@ public class Dispatcher extends HttpServlet {
 
 		String url = request.getServletPath();
 		String path = "";
-
 		System.out.println("URL : " + url);
-
-		if (url.equals("/") || url.equals("/logout.do")) {
+		
+		if (url.equals("/") || url.equals("/logout.do")) { 
 			path = "WEB-INF/jsps/login.jsp";
+			
 		} else if (url.equals("/login.do")) {
-			LoginService loginService = new LoginService(this.userService);
+			LoginService loginService = new LoginService(this.userService); //new LoginService Object
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			String msg = "";
@@ -63,21 +65,25 @@ public class Dispatcher extends HttpServlet {
 
 			}
 			request.setAttribute("message", msg);
+			
 		} else if (url.equals("/registerPage.do")) {
 			path = "WEB-INF/jsps/register.jsp";
+			
 		} else if (url.equals("/register.do")) {
+			
 			String firstName = request.getParameter("firstName");
 			String lastName = request.getParameter("lastName");
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			String message = this.userService.registerUser(firstName, lastName,
-					username, password);
+			String message = this.userService.registerUser(firstName, lastName, username, password);
+			
 			if (message.equals("SUCCESS")) {
 				path = "WEB-INF/jsps/search.jsp";
 			} else {
 				path = "WEB-INF/jsps/register.jsp";
 				request.setAttribute("message", message);
 			}
+			
 		} else if (url.equals("/searchresults.do")) {
 
 			String title = request.getParameter("title");
@@ -90,7 +96,8 @@ public class Dispatcher extends HttpServlet {
 					(Book[]) books.toArray(new Book[books.size()]));
 
 			path = "WEB-INF/jsps/library.jsp";
-		} else if (url.equals("./account.do")) {
+			
+		} else if (url.equals("/account.do")) {
 			path = "WEB-INF/jsps/account.jsp";
 		}
 

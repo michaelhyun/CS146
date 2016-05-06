@@ -18,7 +18,7 @@
 	<div class="container login-wrap">
 		<div class="outer-wrap">
 			<div class="inner-wrap">
-				<h2 class="login-head">LOGIN</h2>
+				<h2 class="login-head">WELCOME</h2>
 				<form action="./login.do" method="get">
 					<div class="form-wrap">
 						<div class="form-group">

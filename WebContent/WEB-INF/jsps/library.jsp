@@ -7,15 +7,28 @@
 <title>SEARCH RESULTS</title>
 </head>
 <body>
-    
+   
+<table border=1> 
+<tr>
+	<th>Title</th>
+	<th>Author</th>
+	<th>ISBN</th>
+</tr>
 <%
 	String message = (String) request.getAttribute("message");
 	edu.sjsu.p146.service.Book[] books = (edu.sjsu.p146.service.Book[]) request.getAttribute("books");
 	
 	for(edu.sjsu.p146.service.Book book : books) {
-		out.println(book.getAuthor());
+%>
+	<tr>
+		<td><%= book.getTitle() %></td>
+		<td><%= book.getAuthor() %></td>
+		<td><%= book.getISBN() %></td>
+	</tr>
+<%
 	}
 %>
+</table>
 
 
 </body>

@@ -16,92 +16,90 @@ public class BookService {
 	
 	//methods in this class: setFilePath, search, sortBooks, registerBook, addBook, readBooksFromFile
 	
-	private static List<Book> books;
+	private List<Book> books;
 	private String filePath;
-	private static List<Book> test;
 	
 	public BookService() {
 		this.filePath = this.getClass().getResource("").getPath() + "books.txt"; //leads to books.txt
 		this.books = this.readBooksFromFile(); //method below
-		this.test = null;
 	}
 	
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
 	
+	private boolean isStringNullAndEmpty(String string) {
+		return string == null || string.isEmpty();
+	}
+	
 	public List<Book> search(String title, String author, String isbn) {
 		
-		//fix this
-		List<Book> list = new ArrayList<Book>();
-		if(!isbn.isEmpty()) { //searches through ISBN
-			searchISBN(isbn);
-		} else if(!title.isEmpty()) {
-			if(!author.isEmpty()) {
-				searchTwo(title, author);
-			} else {
-				searchTitle(title);
+		List<Book> list = this.books;
+		if(!this.isStringNullAndEmpty(title)  
+				|| !this.isStringNullAndEmpty(author) 
+				|| !this.isStringNullAndEmpty(isbn)) {
+			if(!this.isStringNullAndEmpty(isbn)) {
+				list = this.searchISBN(isbn, list);
 			}
-		} else if(!author.isEmpty()) {
-			searchAuthor(author);
-		} else {
-			System.out.println("Please enter a title, author, or ISBN");
+			
+			if(!this.isStringNullAndEmpty(title)) {
+				
+				list = this.searchTitle(title, list);
+			}
+			
+			if(!this.isStringNullAndEmpty(author)) {
+				list = this.searchAuthor(author, list);
+			}
 		}
 
 		//after you get a subset of book that match your search criteria
-		//sort here
-		List<Book> sorted = sortBooks(list);
+		List<Book> sorted = sortByTitle(list);
 		
-		//return sorted
-		return this.books;
+		return sorted;
 	}
 	
-	private static List<Book> searchTitle(String title) { 
+	private List<Book> searchTitle(String title, List<Book> listToFilter) { 
 		List<Book> filtered = new ArrayList<Book>();
-		for(Book book : books) {
-			if(books.contains(title)) {
+		for(Book book : listToFilter) {
+			if(book.getTitle().toLowerCase().contains(title.toLowerCase())) {
 				filtered.add(book);
 			}
 		}
-		return sortTitle(filtered);
+		return filtered;
 	}
 	
-	private static List<Book> searchAuthor(String author) { 
+	private List<Book> searchAuthor(String author, List<Book> listToFilter) { 
 		List<Book> filtered = new ArrayList<Book>();
-		for(Book book : books) {
-			if(books.contains(author)) {
+		for(Book book : listToFilter) {
+			if(book.getAuthor().toLowerCase().contains(author.toLowerCase())) {
 				filtered.add(book);
 			}
 		}
-		return sortAuthor(filtered);
+		return filtered;
 	}
 	
-	private static List<Book> searchISBN(String isbn) {
+	private List<Book> searchISBN(String isbn, List<Book> listToFilter) {
 		List<Book> results = new ArrayList<Book>();
-		for(Book book : books) {
-			if(books.contains(isbn)) {
+		for(Book book : listToFilter) {
+			if(book.getISBN().toLowerCase().equals(isbn.toLowerCase())) {
 				results.add(book);
 			}
 		}
 		return results;
 	}
 	
-	private static List<Book> searchTwo(String title, String author) {
-		return books;
-	}
-	
-	private static List<Book> sortTitle(List<Book> list) {
+	private static List<Book> sortByTitle(List<Book> list) {
 		//IMPLEMENT SORT METHOD
 		return list;
 	}
 	
-	private static List<Book> sortAuthor(List<Book> list) {
+	private static List<Book> sortByAuthor(List<Book> list) {
 		//IMPLEMENT MERGESORT METHOD?
 		return list;
 	}
 	
-	private List<Book> sortBooks(List<Book> list) {
-		//SORT
+	private static List<Book> sortByISBN(List<Book> list) {
+		//IMPLEMENT SORT METHOD?
 		return list;
 	}
 	
