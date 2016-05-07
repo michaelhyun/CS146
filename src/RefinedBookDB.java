@@ -1,6 +1,15 @@
+import java.util.List;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author David
+ */
 public class RefinedBookDB{
 	RefinedBook[] db;
-	List<Book> list;
+        List<Book> list;
+
+	
 
 	RefinedBookDB(List<Book> list, String word){
 
@@ -8,16 +17,17 @@ public class RefinedBookDB{
 		this.list = list;
 			for(int i = 0; i < list.size(); i++){
 				db[i].setRef(i);
-				int x = list.get(i).getTitle().indexOf(word);
+				int x = list.get(i).getTitle().toLower().indexOf(word);
 				db[i].setIndex(x);
 			}
 	}
 
-	public void sortRef(int high, int low){
-		 int i = low;
-         int j = high;
+	public void sortRef(int low, int high){
+	int i = low;
+        int j = high;
+         
         
-        int pivot = db[low+(high-low)/2].getIndex();
+        int pivot = db[(low+high)/2].getIndex();
         
         while (i <= j) {
            
@@ -28,28 +38,31 @@ public class RefinedBookDB{
                 j--;
             }
             if (i <= j) {
-            	int temp = db[i].getIndex();
-       			db[i.getIndex() = db[j].getIndex();
-        		db[j].getIndex() = temp;                        
+            	RefinedBook temp = db[i];
+       			db[i] = db[j];
+        		db[j] = temp;                        
                 i++;
                 j--;
             }
         }
 
-        if (low < j)
-            quickSort(low, j);
-        if (i < high)
-            quickSort(i, high);
+        if (low < j){
+            sortRef(low, j);
+        }
+        if (i < high){
+            sortRef(i, high);
+        }
     }
 
+
     public List<Book> returnList(){
-    	List<Book> newList = new List();
+    	List<Book> newList = new ArrayList();
     	for(RefinedBook book: db){
     		newList.add(list.get(book.getRef()));
     	}
-    	
+
     	return newList;
     }
-	}
 
+    
 }
