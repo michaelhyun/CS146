@@ -7,6 +7,7 @@ Project for CS146
   done
 2. Register Page
   add user to the user.txt file
+  add back to login button
   
 3. Search Page
   sort methods for title, author (not isbn)
