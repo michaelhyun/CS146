@@ -1,5 +1,5 @@
 # CS146
-Project for CS146
+Library Gui Project for CS146
 
 #ToDoList
 ```
